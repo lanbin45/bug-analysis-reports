@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo">
+<head>
+ <meta charset="UTF-8">
+ <title></title>
+ <script src="angular/angular.min.js" type="text/javascript"></script>
+ <!-- <script src="lib/angular-route.js" type="text/javascript"></script> -->
+ <!-- <script src="lib/jquery-2.1.4.min.js"></script> -->
+ <!-- <script src="lib/bootstrap.js" type="text/javascript"></script> -->
+ <link rel="stylesheet" href="angular/angular-csp.css" type="text/css"/>
+ <style>
+ .btn-group{
+  position: relative;
+  left: 40px;
+ }
+ .list-group{
+  position: relative;
+  left: 0;
+ }
+ 
+ .list-group-item{
+ 
+ }
+ #list3{
+  width: 200px;
+ }
+ </style>
+</head>
+<body >
+ 
+ <div ng-controller="directiveControl">
+ <div style="width: 100px;height: 100px;border: 1px solid blue" ng-class="{'hidden':value}" ></div>
+ <div>
+  <list ng-model="value" ></list>
+ </div>
+ <script type="text/ng-template" id="list.html">
+  <div >
+  <div class="btn-group">
+   <ul class="nav nav-tabs">
+   <li role="presentation" ng-mouseover="flag=3" ng-mouseleave="flag=4"><a href="#" >{{name}}</a></li>
+   </ul>
+  </div>
+  <div class="list-group" id="list3" ng-show="flag==3" ng-mouseover="flag=3" ng-mouseleave="flag=4">
+   <ul >
+   <li class="list-group-item " ng-click="fun1()"><a href="#">Action</a></li>
+   <li class="list-group-item "><a href="#">Another action</a></li>
+   <li class="list-group-item "><a href="#">Something else here</a></li>
+   <li class="list-group-item "><a href="#">Separated link</a></li>
+   </ul>
+  </div>
+  </div>
+ </script>
+ </div>
+ 
+</body>
+<script>
+ var demo=angular.module("demo",[]);
+ demo.controller("directiveControl", function ($scope) {
+ 
+ });
+ demo.directive("list",[function () {
+ return {
+  restrict:'EA',
+  templateUrl:'list.html',
+  scope:{
+  value:'=ngModel'
+  },
+ 
+  link: function (scope,element,attr) {
+  scope.name="home";
+  scope.lists=[{name:'home'},{name:'family '}];
+  scope.fun1= function () {
+   scope.value=true;
+   console.log("a")
+  }
+  }
+ }
+ }])
+</script>
+</html>
+ 
