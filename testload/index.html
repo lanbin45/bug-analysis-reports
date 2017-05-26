@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Demo</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width" />
+<script type="text/javascript" src="./extjs/js/ext-all.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="./extjs/resources/css/ext-all.css" />
+</head>
+<script type="text/javascript">
+Ext.onReady(function(){
+	var tabs = Ext.create('Ext.tab.Panel', {
+    items: [
+        {
+            id   : 'my-tab',
+            title: 'Tab 1',
+            html : 'A simple tab'
+        },
+        {
+            title: 'Tab 2',
+            html : 'Another one'
+        }
+    ],
+    renderTo : Ext.getBody()
+});
+
+var tab = Ext.getCmp('my-tab');
+
+Ext.create('Ext.button.Button', {
+    renderTo: Ext.getBody(),
+    text    : 'Select the first tab',
+    scope   : this,
+    handler : function() {
+        tabs.setActiveTab(tab);
+    }
+});
+
+Ext.create('Ext.button.Button', {
+    text    : 'Select the second tab',
+    scope   : this,
+    handler : function() {
+        tabs.setActiveTab(1);
+    },
+    renderTo : Ext.getBody()
+}); 
+});
+</script>
+<body>
+<div id="div1"></div>
+	
+</body>
+</html>
